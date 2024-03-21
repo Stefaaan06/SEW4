@@ -28,7 +28,7 @@ public class PremiumAccount extends Account {
 
     @Override
     public boolean buyItem(Item item) throws NegativeBalanceException {
-        double discountedCost = item.getCost() * (1 - discountRate / 100);
+        double discountedCost = item.cost() * (1 - discountRate / 100);
         if (getBalance() >= discountedCost && getInventorySize() < 10) {
             setBalance(getBalance() - discountedCost);
             getInventory()[getInventorySize()] = item;

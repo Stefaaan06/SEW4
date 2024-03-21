@@ -254,7 +254,7 @@ public class test extends JFrame {
             for (Account account : accounts) {
                 if (account.getAccountId() == accountId) {
                     for (Item item : items) {
-                        if (item.getName().equals(itemName)) {
+                        if (item.name().equals(itemName)) {
                             if (account.buyItem(item)) {
                                 outputArea.append("Item purchased: " + item + "\n");
                                 return;

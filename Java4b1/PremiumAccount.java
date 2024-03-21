@@ -35,5 +35,6 @@ public class PremiumAccount extends Account {
     public String toString() {
         return super.toString() + "\n PremiumAccount[premiumFee=" + premiumFee + ", discountRate=" + discountRate + ", feeCharged=" + feeCharged + "]";
     }
+
 }
 
