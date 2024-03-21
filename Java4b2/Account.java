@@ -25,16 +25,19 @@ public class Account implements Identifizierbar, UserAccount {
         return accountId;
     }
 
+    @Override
     public double getBalance() {
         return balance;
     }
 
+    @Override
     public void increaseBalance(double uploadCredit) {
         if (uploadCredit > 0) {
             balance += uploadCredit;
         }
     }
 
+    @Override
     public boolean buyItem(Item item) throws NegativeBalanceException {
         if (balance >= item.cost() && inventorySize < 10) {
             balance -= item.cost();

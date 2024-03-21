@@ -316,6 +316,12 @@ public class test extends JFrame {
 
 
     public static void main(String[] args) {
+        try{
+            PremiumAccount test = new PremiumAccount(1, 100, 1 ,1);
+            System.out.println(test.identifier());
+        }catch(NegativeBalanceException e){
+
+        }
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
