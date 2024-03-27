@@ -1,8 +1,8 @@
-package Java4a0.scrasnianec;
+package Java4a0.GK;
 
 /**
  * Warenkorbtest
- * @author Stefan Crasnianec
+ * @author Stefan
  * @version 05.02.2024
  */
 public class Warenkorbtest {

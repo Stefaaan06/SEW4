@@ -1,9 +1,9 @@
-package Java4a0.scrasnianec;
+package Java4a0.GK;
 
 
 /**
  * Artikel blueprint
- * @author Stefan Crasnianec
+ * @author Stefan
  * @version 05.02.2024
  */
 public class Artikel {

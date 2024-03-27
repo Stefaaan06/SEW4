@@ -1,9 +1,9 @@
-package Java4a0.scrasnianec;
+package Java4a0.GK;
 
 
 /**
  * Warenkorb der Artikel-Objekte speichern kann.
- * @author Stefan Crasnianec
+ * @author Stefan
  * @version 05.02.2024
  */
 public class Warenkorb {
