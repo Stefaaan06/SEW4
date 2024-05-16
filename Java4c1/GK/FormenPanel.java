@@ -94,6 +94,7 @@ public class FormenPanel extends JPanel {
                 fuellungHohlGefuellt.setText(hohl ? "Gefüllt" : "Hohl");
                 grafik.setHohl(hohl);
             }
+
             updateStatus("Letzte Änderung: " + ((JButton) e.getSource()).getText());
         };
 

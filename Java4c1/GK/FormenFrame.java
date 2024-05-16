@@ -9,15 +9,14 @@ public class FormenFrame extends JFrame {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JMenuBar bar = new JMenuBar();
-        bar.setPreferredSize(new Dimension(500, 20));
-        this.setJMenuBar(bar);
-
         FormenPanel panel = new FormenPanel();
         this.add(panel);
 
         this.pack();
         this.setLocation(500, 500);
         this.setVisible(true);
+    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(FormenFrame::new);
     }
 }
