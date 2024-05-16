@@ -1,5 +1,7 @@
 package Java4b2;
 
+import java.util.Arrays;
+
 public class Account implements Identifizierbar, UserAccount {
     private int accountId;
     private double balance;
@@ -96,16 +98,16 @@ public class Account implements Identifizierbar, UserAccount {
         if (this == o) return true;
         // Prüft, ob das übergebene Objekt null ist oder ob die Klassen der beiden Objekte unterschiedlich sind
         if (o == null || getClass() != o.getClass()) return false;
-        // Castet das übergebene Objekt zu einem Item
-        Java4b1.Item item = (Java4b1.Item) o;
-        // Vergleicht die Hashcodes der beiden Items
-        return hashCode() == item.hashCode();
+        // Castet das übergebene Objekt zu einem Account
+        Java4b1.Account Account = (Java4b1.Account) o;
+        // Vergleicht die Hashcodes der beiden Account
+        return hashCode() == Account.hashCode();
     }
 
     @Override
     public int hashCode() {
         // Verwendet die Objects.hash Methode, um einen Hashcode für das Item zu erzeugen
-        return java.util.Objects.hash(accountId ,balance, inventory, inventorySize);
+        return java.util.Objects.hash(accountId ,balance, inventorySize) + Arrays.hashCode(inventory);
     }
 
 }
