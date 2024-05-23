@@ -2,9 +2,8 @@ package Java4c2.Erweiterung;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.awt.List;
+import java.util.*;
 import java.util.Random;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,14 +20,14 @@ public class View extends JFrame {
     private static JToggleButton easyModeButton;
     private JButton historyButton;
 
-
+    ArrayList<String> history = new ArrayList<String>();
 
     public View() {
         setTitle("Mastermind");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        JPanel topPanel = new JPanel(new GridLayout(1, 6));
+        JPanel topPanel = new JPanel(new GridLayout(1, 5));
         for (int i = 0; i < 5; i++) {
             textFields[i] = new JTextField();
             topPanel.add(textFields[i]);
@@ -39,17 +38,14 @@ public class View extends JFrame {
         solutionButton = new JButton("Lösung");
         resultLabel = new JLabel("Versuche die 5 Zahlen von 0–9 zu erraten", SwingConstants.CENTER);
 
-        JPanel controlPanel = new JPanel(new GridLayout(4, 1));
+        JPanel controlPanel = new JPanel(new GridLayout(5, 1));
         controlPanel.add(checkButton);
         controlPanel.add(newButton);
         controlPanel.add(solutionButton);
 
         easyModeButton = new JToggleButton("Leicht-Modus");
-        historyPanel = new JPanel(new GridLayout(16, 1));
 
         controlPanel.add(easyModeButton);
-
-        add(historyPanel, BorderLayout.WEST);
 
         historyButton = new JButton("Historie anzeigen");
         controlPanel.add(historyButton);
@@ -77,15 +73,13 @@ public class View extends JFrame {
         historyFrame.setLayout(new BorderLayout());
 
         // Erstellt ein neues Panel für die Historie, um das Original nicht zu beeinflussen
-        JPanel historyPanelCopy = new JPanel(new GridLayout(16, 1));
-        for (Component component : historyPanel.getComponents()) {
-            if (component instanceof JLabel) {
-                historyPanelCopy.add(new JLabel(((JLabel) component).getText()));
-            }
+        JPanel historyPanel = new JPanel(new GridLayout(16, 1));
+        for (String s : history) {
+            historyPanel.add(new JLabel(s));
         }
 
-        historyFrame.add(new JScrollPane(historyPanelCopy), BorderLayout.CENTER);
-        historyFrame.setSize(300, 400);
+        historyFrame.add(new JScrollPane(historyPanel), BorderLayout.CENTER);
+        historyFrame.setSize(500, 400);
         historyFrame.setLocationRelativeTo(null);
         historyFrame.setVisible(true);
     }
@@ -112,8 +106,18 @@ public class View extends JFrame {
         return solutionButton;
     }
 
-    public JLabel getResultLabel() {
-        return resultLabel;
+
+    public void addHistory(String history) {
+        this.history.add(history);
+        resultLabel.setText(history);
+    }
+
+    public void setHistory(ArrayList history) {
+        this.history = history;
+    }
+
+    public ArrayList getHistory() {
+        return history;
     }
 
     public GraphicPanel getGraphicPanel() {

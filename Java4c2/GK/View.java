@@ -26,9 +26,15 @@ public class View extends JFrame {
         checkButton = new JButton("Check");
         newButton = new JButton("Neu");
         solutionButton = new JButton("Lösung");
+
         resultLabel = new JLabel("Versuche die 5 Zahlen von 0–9 zu erraten", SwingConstants.CENTER);
 
-        JPanel controlPanel = new JPanel(new GridLayout(3, 1));
+        JPanel controlPanel = new JPanel();
+        BoxLayout boxLayout = new BoxLayout(controlPanel, BoxLayout.Y_AXIS);
+
+
+        controlPanel.setLayout(boxLayout);
+
         controlPanel.add(checkButton);
         controlPanel.add(newButton);
         controlPanel.add(solutionButton);
@@ -37,7 +43,11 @@ public class View extends JFrame {
 
         add(topPanel, BorderLayout.NORTH);
         add(graphicPanel, BorderLayout.CENTER);
-        add(resultLabel, BorderLayout.SOUTH);
+
+        JPanel resultPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        resultPanel.add(resultLabel);
+
+        add(resultPanel, BorderLayout.SOUTH);
         add(controlPanel, BorderLayout.EAST);
 
         setSize(600, 400);

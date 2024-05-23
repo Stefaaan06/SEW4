@@ -3,6 +3,7 @@ package Java4c2.Erweiterung;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,13 +28,12 @@ public class Controller {
     private void newGame() {
         model.generateNewNumbers(easyMode);
         view.getGraphicPanel().reset();
-        view.getResultLabel().setText("Versuche die 5 Zahlen von 0–9 zu erraten");
+        view.setHistory(new ArrayList<>());
+
+        view.addHistory("Versuche die 5 Zahlen von 0–9 zu erraten");
         for (JTextField textField : view.getTextFields()) {
             textField.setText("");
             textField.setEditable(true);
-        }
-        for (JLabel label : historyLabels) {
-            label.setText("");
         }
         view.getCheckButton().setEnabled(true);
         round = 0;
@@ -44,7 +44,7 @@ public class Controller {
         for (int num : model.getSecretNumbers()) {
             solution.append(num).append(" ");
         }
-        view.getResultLabel().setText(solution.toString());
+        view.addHistory(solution.toString());
         for (JTextField textField : view.getTextFields()) {
             textField.setEditable(false);
         }
@@ -58,33 +58,34 @@ public class Controller {
                 guess[i] = Integer.parseInt(view.getTextFields()[i].getText());
             }
         } catch (NumberFormatException e) {
-            view.getResultLabel().setText("Bitte geben Sie gültige Zahlen ein.");
+            view.addHistory("Bitte geben Sie gültige Zahlen ein.");
             return;
         }
 
         if (easyMode && !isValidGuess(guess)) {
-            view.getResultLabel().setText("Im Leicht-Modus darf jede Ziffer nur einmal vorkommen.");
+            view.addHistory("Im Leicht-Modus darf jede Ziffer nur einmal vorkommen.");
             return;
         }
 
         Model.Result result = model.checkGuess(guess);
         view.getGraphicPanel().updateCircles(result.correctPosition(), result.correctNumber());
-        historyLabels[round].setText(view.getResultLabel().getText());
         round++;
 
         if (result.correctPosition() == 5){
-            view.getResultLabel().setText("Gewonnen, du hast meine Zahlen erraten!");
+            view.addHistory("Gewonnen, du hast meine Zahlen erraten!");
             view.getCheckButton().setEnabled(false);
         } else if (round == 16) {
             showSolution();
         } else {
-            view.getResultLabel().setText(result.correctPosition() + " Zahl(en) richtig, " + result.correctNumber() + " Zahl(en) an der falschen Stelle");
+            view.addHistory(result.correctPosition() + " Zahl(en) richtig, " + result.correctNumber() + " Zahl(en) an der falschen Stelle");
         }
     }
 
     private void toggleEasyMode() {
         easyMode = view.getEasyModeButton().isSelected();
-        view.getResultLabel().setText("Easy-Mode " + (easyMode ? "aktiviert" : "deaktiviert"));
+        view.setHistory(new ArrayList<>());
+
+        view.addHistory("Easy-Mode " + (easyMode ? "aktiviert" : "deaktiviert"));
 
     }
 
