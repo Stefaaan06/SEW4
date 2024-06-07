@@ -109,6 +109,8 @@ public class FormenPanel extends JPanel {
             updateStatus("Letzte Änderung: " + ((AbstractButton) e.getSource()).getText());
         };
 
+
+
         formDreieck.addActionListener(radioButtonListener);
         formRaute.addActionListener(radioButtonListener);
         formRechteck.addActionListener(radioButtonListener);

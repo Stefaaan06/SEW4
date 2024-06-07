@@ -38,7 +38,10 @@ public class View extends JFrame {
         solutionButton = new JButton("Lösung");
         resultLabel = new JLabel("Versuche die 5 Zahlen von 0–9 zu erraten", SwingConstants.CENTER);
 
-        JPanel controlPanel = new JPanel(new GridLayout(5, 1));
+        JPanel controlPanel = new JPanel();
+        BoxLayout boxLayout = new BoxLayout(controlPanel, BoxLayout.Y_AXIS);
+        controlPanel.setLayout(boxLayout);
+
         controlPanel.add(checkButton);
         controlPanel.add(newButton);
         controlPanel.add(solutionButton);
@@ -124,42 +127,4 @@ public class View extends JFrame {
         return graphicPanel;
     }
 
-    public static class GraphicPanel extends JPanel {
-        private int correctPosition = 0;
-        private int correctNumber = 0;
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            int width = getWidth();
-            int circleDiameter = (width - 60) / 5;
-            int yPosition = getHeight() / 2 - circleDiameter / 2;
-
-            for (int i = 0; i < correctPosition; i++) {
-                g.setColor(Color.GREEN);
-                g.fillOval(i * (circleDiameter + 10), yPosition, circleDiameter, circleDiameter);
-            }
-            for (int i = 0; i < correctNumber; i++) {
-                g.setColor(Color.ORANGE);
-                g.drawOval((correctPosition + i) * (circleDiameter + 10), yPosition, circleDiameter, circleDiameter);
-            }
-            if (correctPosition == 5) {
-                g.setColor(Color.GREEN);
-                g.setFont(new Font("SansSerif", Font.BOLD, 24));
-                g.drawString("GEWONNEN!", width / 2 - 60, yPosition + circleDiameter + 30);
-            }
-        }
-
-        public void updateCircles(int correctPosition, int correctNumber) {
-            this.correctPosition = correctPosition;
-            this.correctNumber = correctNumber;
-            repaint();
-        }
-
-        public void reset() {
-            correctPosition = 0;
-            correctNumber = 0;
-            repaint();
-        }
-    }
 }

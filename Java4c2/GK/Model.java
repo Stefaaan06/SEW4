@@ -14,6 +14,10 @@ public class Model {
         for (int i = 0; i < 5; i++) {
             secretNumbers[i] = rand.nextInt(10);
         }
+        System.out.println("RICHTIG:");
+        for(int i = 0; i < 5; i++){
+            System.out.println(secretNumbers[i]);
+        }
     }
 
     public int[] getSecretNumbers() {

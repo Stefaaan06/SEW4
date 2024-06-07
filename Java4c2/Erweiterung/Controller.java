@@ -105,4 +105,11 @@ public class Controller {
         new Controller(model, view);
         view.setVisible(true);
     }
+
+    private class ActionHandler implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
 }
